@@ -4,10 +4,10 @@
 // @version      0.1
 // @description  Fill in details on login page
 // @author       Acot
+// @include      https://autofaucet.dutchycorp.space/login.php*
 // @updateURL    https://github.com/Acotec/dutchycorp_meta/raw/master/Dutchycorp(Login).user.js
 // @downloadURL  https://github.com/Acotec/dutchycorp_meta/raw/master/Dutchycorp(Login).user.js
-//// @require      https://github.com/Acotec/dutchycorp_script/raw/master/Dutchycorp(Login).user.js
-// @include      https://autofaucet.dutchycorp.space/login.php*
+//// @require    https://github.com/Acotec/dutchycorp_script/raw/master/Dutchycorp(Login).user.js
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dutchycorp.space
 // @run-at       document-end
 // ==/UserScript==
@@ -41,24 +41,18 @@
             .join("");
     };
     function generatepass(df_ps){
-        console.log(df_ps,typeof(df_ps))
-        let ps=df_ps
-        let ps_num =ps.length
+        let ps=df_ps.toLowerCase()
         let key = window.location.host
         let crypt_ps = crypt(key,ps)
-        let decrypt_ps =decrypt(key,crypt_ps)
-        let bycrypt_ps = btoa(crypt_ps)+crypt_ps
-        let gen = bycrypt_ps.replace(/=|\d/ig,'').substring(0,8)+crypt_ps.substr(-7)
-        console.log(ps,crypt_ps,decrypt_ps,bycrypt_ps,gen)
-        gen = capitalizeFirstLetter(gen.substring(4,))
-        if(gen.length<8){gen=capitalizeFirstLetter(gen)}
-        if(!/\w/ig.test(gen)){gen=capitalizeFirstLetter(gen+'Acot')}
-        if(!/\d/ig.test(gen)){gen=capitalizeFirstLetter(gen+81186815)}
+        let decrypt_ps = decrypt(key,crypt_ps)
+        let gen = capitalizeFirstLetter(crypt_ps)
+        if(gen.length<8){gen=capitalizeFirstLetter(gen+81186815)}
+        console.log(ps,crypt_ps,decrypt_ps,gen)
         return gen
     }
     function pass(un){
         try{
-        form.filter(a =>{if(a.querySelector('input').name=='password'){d.push(a.querySelector('input'))}})}catch(err){}
+            form.filter(a =>{if(a.querySelector('input').name=='password'){d.push(a.querySelector('input'))}})}catch(err){}
         ps = generatepass(un)
         console.log(ps)
         d.forEach(p =>{
@@ -66,8 +60,8 @@
         })
     }
     form.filter(u=>{if(u.querySelector('input').type=='text'){u.addEventListener('focusout', (event) => {
-        let us = u.querySelector('input').value
-        console.log(us)
+        let us = u.querySelector('input').value //username
+        //console.log(us)
         pass(us)
     });}})
 })();

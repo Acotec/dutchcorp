@@ -6,7 +6,7 @@
 // @author       Acot
 // @updateURL    https://github.com/Acotec/dutchycorp_meta/raw/master/Dutchycorp(Register).user.js
 // @downloadURL  https://github.com/Acotec/dutchycorp_meta/raw/master/Dutchycorp(Register).user.js
-//// @require      https://github.com/Acotec/dutchycorp_script/raw/master/Dutchycorp(Register).user.js
+//// @require    https://github.com/Acotec/dutchycorp_script/raw/master/Dutchycorp(Register).user.js
 // @match        https://autofaucet.dutchycorp.space/?r=*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dutchycorp.space
 // @run-at       document-end
@@ -37,19 +37,14 @@
             .map((charCode) => String.fromCharCode(charCode))
             .join("");
     };
-    function generatepass(df_ps){
-        let ps=df_ps
-        let ps_num =ps.length
+     function generatepass(df_ps){
+        let ps=df_ps.toLowerCase()
         let key = window.location.host
         let crypt_ps = crypt(key,ps)
-        let decrypt_ps =decrypt(key,crypt_ps)
-        let bycrypt_ps = btoa(crypt_ps)+crypt_ps
-        let gen = bycrypt_ps.replace(/=|\d/ig,'').substring(0,8)+crypt_ps.substr(-7)
-        console.log(ps,crypt_ps,decrypt_ps,bycrypt_ps,gen)
-        gen = capitalizeFirstLetter(gen.substring(4,))
-        if(gen.length<8){gen=capitalizeFirstLetter(gen)}
-        if(!/\w/ig.test(gen)){gen=capitalizeFirstLetter(gen+'Acot')}
-        if(!/\d/ig.test(gen)){gen=capitalizeFirstLetter(gen+81186815)}
+        let decrypt_ps = decrypt(key,crypt_ps)
+        let gen = capitalizeFirstLetter(crypt_ps)
+        if(gen.length<8){gen=capitalizeFirstLetter(gen+81186815)}
+        console.log(ps,crypt_ps,decrypt_ps,gen)
         return gen
     }
     var can_continue=window.confirm(`HAVE YOU CHANGE YOUR IP?\nYES(OK)--NO(Cancel).\n\n(Don't click(OK) if you have not change your IP!).\nElse you will lose your refferer.`);
@@ -77,6 +72,7 @@
                 p.value=ps//atob('QEF1dG9mYXVjZXRtZWluNzc=')
             })
         }
+        document.querySelector("#agree").click()
     } else {
         alert("CHANGE YOUR IP")
     }

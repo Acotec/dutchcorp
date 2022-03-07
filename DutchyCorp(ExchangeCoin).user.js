@@ -6,7 +6,6 @@
 // @include       *autofaucet.dutchycorp.space/exchange.php*
 // @updateURL    https://github.com/Acotec/dutchycorp_meta/raw/master/DutchyCorp(ExchangeCoin).user.js
 // @downloadURL  https://github.com/Acotec/dutchycorp_meta/raw/master/DutchyCorp(ExchangeCoin).user.js
-//// @require      https://github.com/Acotec/dutchycorp_script/raw/master/DutchyCorp(ExchangeCoin).user.js
 // @grant         GM_setValue
 // @grant         GM_getValue
 //// @require      https://github.com/Acotec/dutchycorp_script/raw/master/DutchyCorp(ExchangeCoin).user.js
@@ -40,11 +39,11 @@
     function fill_in_and_exchange(){
         let balance = document.querySelector("#balance_to_exchange").textContent.replace(/\D/ig,'')
         document.querySelector("#amount_to_exchange").value=balance
+        document.querySelector("#amount_to_exchange").dispatchEvent(new Event('input',{bubbles:true,cancelable: true}))
         //document.querySelector("#all_submit").click()
     }
     waitForKeyElements('.select-wrapper', (element) => {
         selectFromDropDown("usdt")
         fill_in_and_exchange()
-    });
-    //document.querySelector("#toast-container").textContent
+    });    
 })();
