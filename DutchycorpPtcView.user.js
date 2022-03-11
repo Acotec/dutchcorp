@@ -1,31 +1,36 @@
 // ==UserScript==
 // @name         DutchycorpPtcView
 // @namespace    Acot
-// @version      0.1
+// @version      0.2
 // @description  click Submit when countdown end, when viewing ptc
 // @author       Acot
 // @updateURL    https://github.com/Acotec/dutchycorp_meta/raw/master/DutchycorpPtcView.user.js
 // @downloadURL  https://github.com/Acotec/dutchycorp_meta/raw/master/DutchycorpPtcView.user.js
 //// @require    https://github.com/Acotec/dutchycorp_script/raw/master/DutchycorpPtcView.user.js
-// @include      https://autofaucet.dutchycorp.space/ptc/view.php*
+// @include      *autofaucet.dutchycorp.space/ptc/view.php*
+// @include      *autofaucet.dutchycorp.space/ptc/index.php
+// @include      *autofaucet.dutchycorp.space/ptc/
+// @include      *autofaucet.dutchycorp.space/ptc
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=dutchycorp.space
 // @grant        none
 // ==/UserScript==
 
 (function() {
-    'use strict';
-      function waitForKeyElements(t, o, e, i, n) {
-        void 0 === e && (e = !0), void 0 === i && (i = 300), void 0 === n && (n = -1);
-        var r = "function" == typeof t ? t() : document.querySelectorAll(t),
-            u = r && 0 < r.length;
-        u && r.forEach(function (t) {
-            var e = "data-userscript-alreadyFound";
-            t.getAttribute(e) || !1 || (o(t) ? u = !1 : t.setAttribute(e, !0))
-        }), 0 === n || u && e || (--n, setTimeout(function () {
-            waitForKeyElements(t, o, e, i, n)
-        }, i))
-    }
-    waitForKeyElements('#ptc-submit-btn',(e)=>{e.click()})
+    'use strict'
+    let progress = setInterval(()=>{
+        console.log('waiting')
+        let i=0
+        let style = document.querySelector("div.progress").getAttribute('style')
+        if(/display: none/ig.test(style)){
+            clearInterval(progress)
+            document.querySelector("#ptc-submit-btn").click()
+        }
+        if(i>61){
+            clearInterval(progress)
+        }
+    },1000)
+    //document.querySelector("div.progress").getAttribute('style')
+    //waitForKeyElements('#ptc-submit-btn',(e)=>{e.click()})
     //document.querySelector("#ptc-submit-btn").click()
 
-})();
+    })();
