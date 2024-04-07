@@ -4,8 +4,8 @@
 // @version      1
 // @description  AutomateButtons
 // @author       Acotec
-// @updateURL    https://github.com/Acotec/dutchycorp_meta/raw/master/DutchycorpClaim.user.js
-// @downloadURL  https://github.com/Acotec/dutchycorp_meta/raw/master/DutchycorpClaim.user.js
+// @updateURL    https://github.com/Acotec/dutchycorp_meta/raw/root/DutchycorpClaim.user.js
+// @downloadURL  https://github.com/Acotec/dutchycorp_meta/raw/root/DutchycorpClaim.user.js
 //// @require      http://code.jquery.com/jquery-3.5.1.min.js
 // @connect      gist.github.com
 // @connect      gist.githubusercontent.com
@@ -21,7 +21,7 @@
 // @grant        unsafeWindow
 // @grant        window.close
 // @grant        GM_xmlhttpRequest
-//// @require      https://github.com/Acotec/dutchycorp_script/raw/master/DutchycorpClaim.user.js
+//// @require      https://github.com/Acotec/dutchycorp_script/raw/root/DutchycorpClaim.user.js
 // ==/UserScript==
 (function () {
     var _DontOpen = GM_getResourceText("_DontOpen").replace(/'|"|\[|\]|\s/ig, '').split(',').filter(e => e),

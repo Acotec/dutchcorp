@@ -4,9 +4,9 @@
 // @version      0.2
 // @description  click Submit when countdown end, when viewing ptc
 // @author       Acot
-// @updateURL    https://github.com/Acotec/dutchycorp_meta/raw/master/DutchycorpPtcView.user.js
-// @downloadURL  https://github.com/Acotec/dutchycorp_meta/raw/master/DutchycorpPtcView.user.js
-//// @require    https://github.com/Acotec/dutchycorp_script/raw/master/DutchycorpPtcView.user.js
+// @updateURL    https://github.com/Acotec/dutchycorp_meta/raw/root/DutchycorpPtcView.user.js
+// @downloadURL  https://github.com/Acotec/dutchycorp_meta/raw/root/DutchycorpPtcView.user.js
+//// @require    https://github.com/Acotec/dutchycorp_script/raw/root/DutchycorpPtcView.user.js
 // @include      *autofaucet.dutchycorp.space/ptc/view.php*
 // @include      *autofaucet.dutchycorp.space/ptc/index.php
 // @include      *autofaucet.dutchycorp.space/ptc/
